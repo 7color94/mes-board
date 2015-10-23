@@ -16,7 +16,7 @@ Python Web框架Tornado入门练习小项目：留言板
 
 站点后台采用tornado，前台采用Amazon UI，数据库采用MongoDB
 
-
+![站点快照](https://raw.githubusercontent.com/su-kaiyao/mes-board/master/imgs/demo.png)
 
 ### 待完成：
 
