@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>登录页面 | 留言板</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.4.2/css/amazeui.min.css"/>
+  <style>
+    .header {
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 200%;
+      color: #333;
+      margin-top: 30px;
+    }
+    .header p {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="am-g">
+    <h1>登录页面</h1>
+  </div>
+  <hr>
+</div>
+
+{% set messages = handler.get_message() %}
+{% if messages %}
+<div class="am-g am-container">
+  <div class="am-u-lg-12">
+    <div class="am-alert am-alert-danger" data-am-alert>
+    {% for message in messages %}
+    <center>{{ message }}</center>
+    {% end %}
+    </div>
+  </div>
+</div>
+{% end %}
+
+<div class="am-g">
+  <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+    <br>
+    <form method="post" class="am-form">
+      <label for="username">昵称:</label>
+      <input type="text" name="username" id="username" value="" placeholder="输入您在本系统注册的昵称哦">
+      <br>
+      <label for="password">密码:</label>
+      <input type="password" name="password" id="password" value="" placeholder="请仔细输入该昵称的密码哦">
+      <br>
+      <br />
+      <div class="am-cf">
+        <input type="submit" name="" value="登录" class="am-btn am-btn-primary am-btn-sm am-fl">
+      </div>
+      {% raw xsrf_form_html() %}
+    </form>
+    <br/>
+    <a href="/signup"><button class="am-btn am-btn-default am-btn-sm am-fl">还没有拥有账号，前往注册页面</button></a>
+    <br/>
+    <br/>
+    <a href="/"><button class="am-btn am-btn-default am-btn-sm am-fl">返回首页</button></a>
+    <br/>
+    <hr>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>注册页面 | 留言板</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.4.2/css/amazeui.min.css"/>
+  <style>
+    .header {
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 200%;
+      color: #333;
+      margin-top: 30px;
+    }
+    .header p {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="am-g">
+    <h1>注册页面</h1>
+  </div>
+  <hr>
+</div>
+
+{% set messages = handler.get_message() %}
+{% if messages %}
+<div class="am-g am-container">
+  <div class="am-u-lg-12">
+    <div class="am-alert am-alert-danger" data-am-alert>
+    {% for message in messages %}
+    <center>{{ message }}</center>
+    {% end %}
+    </div>
+  </div>
+</div>
+{% end %}
+
+<div class="am-g">
+  <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+    <br>
+    <form method="post" class="am-form">
+      <label for="username">注册昵称:</label>
+      <input type="text" name="username" id="email" value="" placeholder="昵称为字母＋数字，不超过11位哦">
+      <br>
+      <label for="username">您的博客地址:</label>
+      <input type="text" name="blog" id="email" value="" placeholder="如果您有博客的话，欢迎填写哦">
+      <br>
+      <label for="password">输入注册密码:</label>
+      <input type="password" name="password" id="password" value="" placeholder="密码不要太复杂哦，否则你会忘记的。本系统还没有找回密码功能呢">
+      <br>
+      <label for="repeat-password">确认注册密码:</label>
+      <input type="password" name="repeat-password" id="repeat-password" value="" placeholder="切勿手贱，两次输入密码必须一致呀">
+      <br />
+      <div class="am-cf">
+        <input type="submit" name="" value="注册此账号" class="am-btn am-btn-primary am-btn-sm am-fl">
+      </div>
+      {% raw xsrf_form_html() %}
+    </form>
+    <br/>
+    <a href="/signin"><button class="am-btn am-btn-default am-btn-sm am-fl">已拥有账号，前往登录页面</button></a>
+    <br/>
+    <br/>
+    <a href="/"><button class="am-btn am-btn-default am-btn-sm am-fl">返回首页</button></a>
+    <br/>
+    <hr>
+  </div>
+</div>
+</body>
+</html>

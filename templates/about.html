@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block title %}关于{% end %}
+
+{% block active-nav %}
+    <li><a href="/">首页</a></li>
+    <li class="am-active"><a href="/about">关于</a></li>
+{% end %}
+
+{% block content %}
+<div class="get">
+  <div class="am-g">
+    <div class="am-u-lg-12">
+      <h1 class="get-title">使用Tornado制作的留言板</h1>
+      <p>
+        Tornado Web框架入门Demo
+      </p>
+      <p>
+        <a href="http://su-kaiyao.github.com/" class="am-btn am-btn-sm get-btn" target="_blank">前往本项目Github仓库</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% end %}

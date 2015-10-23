@@ -1,0 +1,89 @@
+{% extends 'layout.html' %}
+
+{% block title %}主页{% end %}
+
+{% block content %}
+<div class="about">
+  <div class="am-g am-container">
+    <div class="am-u-lg-12">
+    {% if not current_user %}
+    <h2 class="about-title about-color">留言区！欢迎踊跃发言！留言前请先登录！</h2>
+    {% end %}
+    </div>
+  </div>
+</div>
+
+<div class="board">
+
+
+  <div class="am-g am-container">
+    <div class="am-u-lg-12">
+    {% if replies %}
+      {% set replies_per_page = 5 %}
+      {% for reply in replies[(p-1)*replies_per_page : p*replies_per_page] %}
+      <div class="msg-list">
+        <div class="list-img">
+          <a href="/member/sukai" class="head-pic">
+            <img class="avatar" src="http://cdn.v2ex.co/gravatar/399c30dbf7e89e8f81b412b1034c57d0?s=48&d=retro">
+          </a>
+        </div>
+
+        <div class="list-message">
+          <div class="list-headers">
+            <a href="/user/sukai" class="list-usernmae">{{ reply['author'] }}</a>
+            <span class="list-ip"> | IP:{{ reply['ip'] }}</span>
+            <span class="am-badge am-round">{{ reply['index'] }}</span>
+          </div>
+          <div class="list-content">
+            {% raw reply['content_html'] %}
+          </div>
+          <div class="list-footer">
+            <span class="message-time">{{ reply['reply_time'] }}</span>
+            {% set toUser = reply['author'] %}
+            <a onclick="my_function('{{ toUser }}')" href="javascript:void(0)"><span class="am-badge am-badge-success am-round">回复作者</span></a>
+          </div>
+        </div>
+      </div>
+      {% end %}
+    {% end %}
+
+
+    {% if p>1 %}
+    <a href="/?p={{ p-1 }}"><button type="button" class="am-btn am-btn-primary am-radius">上一页</button></a>
+    {% else %}
+    <a href="javascript:void(0)"><button type="button" class="am-btn am-btn-primary am-radius" disabled="disabled">上一页</button></a>
+    {% end %}
+    {% if p*replies_per_page < replies_count %}
+    <div style="float:right">
+    <a href="/?p={{ p+1 }}"><button type="button" class="am-btn am-btn-primary am-radius">下一页</button></a>
+    </div>
+    {% else %}
+    <div style="float:right">
+    <a href="javascript:void(0)"><button type="button" class="am-btn am-btn-primary am-radius" disabled="disabled">下一页</button></a>
+    </div>
+    {% end %}
+    </div>
+  </div>
+
+
+  {% if current_user %}
+  <div class="am-g am-container">
+    <div class="am-u-lg-12">
+      <div class="board-block">
+        <form method="post" class="am-form">
+          <fieldset>
+            <div class="am-form-group">
+              <p class="about-color">{{ handler.current_user["username"] }}，你好！欢迎留言</p>
+              <textarea class="reply-text" rows="5" id="board-text" name="content"></textarea>
+            </div>
+            <input type="submit" class="am-btn am-btn-success" value="发表">
+          </fieldset>
+        {% raw xsrf_form_html() %}
+        </form>
+      </div>
+    </div>
+  </div>
+  {% end %}
+
+</div>
+{% end %}
