@@ -140,10 +140,10 @@ class UserHandler(BaseHandler):
 
 
 handlers = [
-(r"/", IndexHandler),
-(r"/signup", SignupHandler),
-(r"/signin", SigninHandler),
-(r"/signout", SignoutHandler),
-(r"/about", AboutHandler),
-(r"/user/(\w+)", UserHandler),
+    (r"/", IndexHandler),
+    (r"/signup", SignupHandler),
+    (r"/signin", SigninHandler),
+    (r"/signout", SignoutHandler),
+    (r"/about", AboutHandler),
+    (r"/user/(\w+)", UserHandler),
 ]
