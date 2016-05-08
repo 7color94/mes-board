@@ -18,7 +18,7 @@ if version < 3:
     reload(sys)
     sys.setdefaultencoding('utf-8')
 
-define('port', default=9600, help='run tornado app on the given port', type=int)
+define('port', default=9800, help='run tornado app on the given port', type=int)
 
 
 class App(tornado.web.Application):
@@ -44,6 +44,7 @@ def main():
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
 
-
 if __name__ == '__main__':
+    print 'Development server running on "http://localhost:%s"' % options.port
+    print('Quit the server with Control+C')
     main()
