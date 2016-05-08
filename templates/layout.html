@@ -26,8 +26,10 @@
       {% end %}
       </ul>
       {% if current_user %}
+
       <div class="am-topbar-right">
-      <a href="/signout"><button type="button" class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span> 退出</button></a>
+        <p style="margin-top:5px;margin-right:7px;display:inline-block">欢迎&nbsp;&nbsp;{{ current_user["username"] }}&nbsp;&nbsp;</p>
+        <a href="/signout"><button type="button" class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span> 退出</button></a>
       </div>
       {% else %}
       <div class="am-topbar-right">
